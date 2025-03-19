@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - model_service
+    environment:
+      MODEL_SERVICE_URL: "http://model_service:5000/predict"
+
+  model_service:
+    build: ./model_service
+    ports:
+      - "5000:5000"
