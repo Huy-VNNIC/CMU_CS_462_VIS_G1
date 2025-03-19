@@ -3,12 +3,14 @@ from flask_cors import CORS
 import pickle
 import pandas as pd
 import numpy as np
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 # Định nghĩa đường dẫn mô hình (chỉnh lại nếu cần)
-MODEL_PATH = "/home/nhathuy/CMU_CS_462_VIS_G1/project-root/model_service/software_effort_model.pkl"
+CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
+MODEL_PATH = os.path.join(CURRENT_DIR, "software_effort_model.pkl")
 
 
 # Load model từ file

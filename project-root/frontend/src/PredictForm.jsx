@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const PREDICT_API = process.env.REACT_APP_PREDICT_API;
+if (!PREDICT_API) {
+  throw new Error("❌ Missing environment variable REACT_APP_PREDICT_API");
+}
+
 const PredictForm = () => {
   const [inputs, setInputs] = useState({
     feature: "",
@@ -21,7 +26,7 @@ const PredictForm = () => {
     setError(""); // Reset error trước khi gửi request
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/predict", {
+      const response = await axios.post(PREDICT_API, {
         feature: parseFloat(inputs.feature),
         complexity: parseFloat(inputs.complexity),
         lines_of_code: parseFloat(inputs.lines_of_code),
@@ -29,7 +34,9 @@ const PredictForm = () => {
 
       setPrediction(response.data.predicted_effort);
     } catch (err) {
-      setError("❌ Lỗi khi gọi API: " + (err.response?.data?.error || err.message));
+      setError(
+        "❌ Lỗi khi gọi API: " + (err.response?.data?.error || err.message)
+      );
     }
   };
 
@@ -64,7 +71,10 @@ const PredictForm = () => {
           className="w-full p-2 border rounded"
           required
         />
-        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+        >
           Dự đoán
         </button>
       </form>

@@ -1,15 +1,26 @@
 version: "3.8"
-services:
+
+networks:
   backend:
-    build: ./backend
+    driver: bridge
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - model_service
+    networks:
+      - backend
     environment:
-      MODEL_SERVICE_URL: "http://model_service:5000/predict"
+      - REACT_APP_PREDICT_API=http://backend:5000/predict
 
-  model_service:
-    build: ./model_service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    networks:
+      - backend

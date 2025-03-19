@@ -1,7 +1,26 @@
-FROM node:18
+FROM python:3.9-slim
+
+# Set working directory
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONUNBUFFERED=1
+
+# Install system dependencies
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends gcc \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
 COPY . .
-CMD ["node", "server.js"]
-EXPOSE 3000
+
+# Expose port
+EXPOSE 5000
+
+# Run the application
+CMD ["python", "app.py"]
