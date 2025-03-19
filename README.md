@@ -149,11 +149,4 @@ Mô hình **Random Forest** cho kết quả tốt nhất.
 3. **Áp dụng mô hình mạnh hơn** như XGBoost hoặc Neural Network.
 4. **So sánh nhiều cách tiếp cận khác nhau** để đảm bảo độ chính xác.
 
----
-
-## 📌 Tác giả
-
-- **Nguyễn Nhật Huy**
-
-Nếu có bất kỳ câu hỏi hoặc cần hỗ trợ, vui lòng liên hệ!
 
