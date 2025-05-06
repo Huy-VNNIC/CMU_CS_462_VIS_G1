@@ -1,152 +1,215 @@
-# Machine Learning Effort Prediction System
+# COCOMO II Advanced Calculator
 
-## 📌 Giới thiệu
-Dự án này sử dụng **Machine Learning** để dự đoán effort trong phát triển phần mềm dựa trên các thông số đầu vào như số dòng code (LOC), độ phức tạp (Complexity), và các yếu tố khác.
+![COCOMO II Calculator](https://img.shields.io/badge/COCOMO%20II-Advanced%20Calculator-blue)
+![Version](https://img.shields.io/badge/version-1.1.0-brightgreen)
+![Status](https://img.shields.io/badge/status-stable-brightgreen)
 
-Hệ thống gồm ba thành phần chính:
-1. **Frontend**: Ứng dụng React.js để thu thập dữ liệu từ người dùng.
-2. **Backend**: API Node.js kết nối giữa frontend và model dự đoán.
-3. **Model Service**: Dịch vụ Flask chạy mô hình Machine Learning để dự đoán effort.
+## Tổng quan
 
----
-## 📂 Cấu trúc thư mục
-```
-CMU_CS_462_VIS_G1/
-│── frontend/              # React.js frontend
-│   ├── node_modules/      # Thư viện Node.js
-│   ├── public/            # File tĩnh
-│   ├── src/               # Source code React
-│   ├── package.json       # Cấu hình dependencies
-│   ├── README.md          # Tài liệu frontend
-│
-│── project-root/          # Backend + Model Service
-│   │── backend/           # API Server (Node.js)
-│   │   ├── server.js      # File chính của backend
-│   │   ├── package.json   # Cấu hình backend
-│   │   ├── .env           # Biến môi trường
-│   │   ├── Dockerfile     # Docker backend
-│   │
-│   │── model_service/     # Service dự đoán ML (Flask)
-│   │   ├── app.py         # API Flask xử lý dự đoán
-│   │   ├── requirements.txt  # Các thư viện Python
-│   │   ├── software_effort_model.pkl  # Mô hình ML
-│   │   ├── Dockerfile     # Docker model
-│   │
-│   │── docker-compose.yml # Chạy toàn bộ hệ thống
-```
----
-## 🚀 Cách chạy hệ thống
+COCOMO II Advanced Calculator là công cụ hiện đại để ước tính nỗ lực phát triển phần mềm dựa trên mô hình Constructive Cost Model II (COCOMO II). Ứng dụng cung cấp giao diện người dùng trực quan cho quá trình ước tính dự án phần mềm, bao gồm các tính năng nâng cao như Scale Drivers, Cost Drivers và phân tích rủi ro Monte Carlo.
 
-### 1️⃣ Chạy bằng Docker Compose
-```sh
-docker-compose up --build
-```
-Lệnh này sẽ:
-- Khởi chạy frontend React.js trên cổng `3000`
-- Khởi chạy backend Node.js trên cổng `5000`
-- Khởi chạy model service Flask trên cổng `5001`
+![COCOMO II Screenshot](./screenshots/cocomo-calculator.png)
 
----
-## 🔧 API Endpoints
-### 🟢 Backend API (Node.js)
-| Method | Endpoint     | Mô tả |
-|--------|-------------|-------|
-| POST   | `/predict`  | Gửi dữ liệu để dự đoán effort |
+## Tính năng chính
 
----
+- **Mô hình COCOMO II đầy đủ**:
+  - Ước tính nỗ lực (person-months)
+  - Ước tính lịch trình (tháng/tuần)
+  - Ước tính quy mô nhóm phát triển
 
-## 🚀 Hướng dẫn cài đặt
+- **Các tham số COCOMO II nâng cao**:
+  - Scale Drivers: Precedentedness, Development Flexibility, Architecture Resolution, Team Cohesion, và Process Maturity
+  - Cost Drivers: 16 drivers trong 4 nhóm (Product Factors, Platform Factors, Personnel Factors, và Project Factors)
 
-### 1. Cài đặt môi trường
+- **Phân tích rủi ro Monte Carlo**:
+  - Phân tích xác suất cho effort, lịch trình và quy mô nhóm
+  - Các phân vị P10, P50, P90 cho kế hoạch dự án thực tế
+  - Ước tính rủi ro dựa trên mô phỏng đa biến
 
-```sh
-pip install -r requirements.txt
-```
+- **Giao diện người dùng hiện đại**:
+  - Thiết kế đáp ứng (responsive design)
+  - Hỗ trợ Dark Mode / Light Mode
+  - Layout thân thiện với người dùng
 
-### 2. Khởi chạy server Flask
+- **Tích hợp API với mô hình ML nâng cao**:
+  - Sử dụng mô hình học máy để cải thiện độ chính xác ước tính
+  - Backend API linh hoạt với Python và Node.js
 
-```sh
-python app.py
-```
+## Công nghệ sử dụng
 
-Mặc định API sẽ chạy trên `http://0.0.0.0:5001`
+- **Frontend**:
+  - React
+  - TypeScript
+  - CSS3 hiện đại
 
----
+- **Backend**:
+  - Node.js
+  - Express
+  - Python (cho mô hình học máy)
 
-## 🔥 Hướng dẫn sử dụng API
+## Cài đặt
 
-### 1. Endpoint: `/predict`
+### Yêu cầu hệ thống
 
-**Phương thức:** `POST`
+- Node.js 14+
+- Python 3.7+ (cho mô hình ML)
+- npm hoặc yarn
 
-#### 🔹 Request Body (JSON):
+### Cài đặt Frontend
 
-```json
-{
-  "feature": 5,
-  "complexity": 3,
-  "lines_of_code": 2000
-}
+```bash
+# Clone repository
+git clone https://github.com/yourusername/CMU_SE__404.git
+cd CMU_SE__404/frontend
+
+# Cài đặt dependencies
+npm install
+
+# Khởi chạy ứng dụng
+npm start
 ```
 
-#### 🔹 Response:
+### Cài đặt Backend
 
-```json
-{
-  "predicted_effort": 39.98
-}
+```bash
+# Di chuyển đến thư mục backend
+cd ../backend
+
+# Cài đặt dependencies Node.js
+npm install
+
+# Cài đặt dependencies Python
+pip install numpy scikit-learn
+
+# Khởi chạy server
+node app.js
 ```
 
----
+## Cách sử dụng
 
-## 🎯 So sánh với mô hình COCOMO II
+1. **Nhập thông số cơ bản**:
+   - Software Size (SLOC hoặc Function Points)
+   - Sizing Method (SLOC/Function Points)
+   - Mode (SLDC/Organic/Semi-detached/Embedded)
+   - Các tham số tùy chỉnh (a, b, SCED, RCPX)
 
-Mô hình Machine Learning được so sánh với **COCOMO II** - một phương pháp truyền thống dự đoán effort phần mềm theo công thức:
+2. **Cấu hình Scale Drivers**:
+   - Precedentedness
+   - Development Flexibility
+   - Architecture Resolution
+   - Team Cohesion
+   - Process Maturity
+
+3. **Cấu hình Cost Drivers**:
+   - Product factors (Reliability, Database Size, ...)
+   - Platform factors (Execution Time Constraint, ...)
+   - Personnel factors (Analyst Capability, ...)
+   - Project factors (Tool Use, ...)
+
+4. **Bật/tắt phân tích Monte Carlo** (tùy chọn)
+
+5. **Nhấn "Calculate Effort"** để nhận kết quả ước tính
+
+## API Endpoints
+
+| Endpoint | Method | Mô tả |
+|----------|--------|-------|
+| `/test` | GET | Kiểm tra server hoạt động |
+| `/cocomo/drivers` | GET | Lấy danh sách Scale Drivers và Cost Drivers |
+| `/predict` | POST | API cơ bản tương thích ngược |
+| `/cocomo/detailed` | POST | Tính toán COCOMO II đầy đủ |
+| `/cocomo/monte-carlo` | POST | Thực hiện phân tích rủi ro Monte Carlo |
+
+## Cấu trúc dự án
 
 ```
-Effort = A * (Size)^B * EAF
+CMU_SE__404/
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       │   ├── CocomoTable.tsx
+│       │   ├── CostDrivers.tsx
+│       │   ├── Dropdown.tsx
+│       │   ├── Header.tsx
+│       │   ├── InputField.tsx
+│       │   ├── InputGroup.tsx
+│       │   ├── MonteCarloResults.tsx
+│       │   ├── ResultCard.tsx
+│       │   ├── ScaleDrivers.tsx
+│       │   └── ThemeToggle.tsx
+│       ├── models/
+│       │   └── types.ts
+│       ├── services/
+│       │   └── api.ts
+│       ├── utils/
+│       │   └── backend-helper.ts
+│       ├── App.css
+│       ├── App.tsx
+│       ├── index.css
+│       └── index.tsx
+├── backend/
+│   ├── ml_models/
+│   │   ├── cocomo_basic_model.pkl
+│   │   ├── cocomo_advanced_model.pkl
+│   │   ├── create_dummy_model.py
+│   │   ├── predict_basic.py
+│   │   ├── predict_advanced.py
+│   │   └── monte_carlo.py
+│   ├── app.js
+│   └── package.json
+└── README.md
+```
+
+## Chi tiết kỹ thuật
+
+### Mô hình COCOMO II
+
+COCOMO II là mô hình ước tính nỗ lực phát triển phần mềm được phát triển bởi Barry Boehm. Công thức cơ bản:
+
+```
+PM = A * Size^E * EM
 ```
 
 Trong đó:
+- PM: Nỗ lực (person-months)
+- A: Hằng số hiệu chỉnh (2.94 cho COCOMO II.2000)
+- Size: Kích thước phần mềm (KSLOC)
+- E: Hệ số quy mô (E = B + 0.01 * ∑SF)
+- EM: Tích các hệ số điều chỉnh từ Cost Drivers
 
-- **Size**: KLOC (Số ngàn dòng code)
-- **A, B**: Hằng số (tùy vào loại dự án)
-- **EAF**: Hệ số điều chỉnh
+### Phân tích Monte Carlo
 
-**Ví dụ so sánh:**
+Phương pháp Monte Carlo được sử dụng để phân tích rủi ro bằng cách:
+1. Tạo nhiều biến thể ngẫu nhiên của các tham số đầu vào
+2. Tính toán kết quả cho mỗi bộ tham số
+3. Phân tích phân phối kết quả để xác định các phân vị và xác suất
 
-| Phương pháp          | Effort dự đoán |
-| -------------------- | -------------- |
-| **COCOMO II**        | 42.5           |
-| **Machine Learning** | 39.98          |
+## Đóng góp
+
+Đóng góp và báo lỗi luôn được chào đón! Vui lòng:
+
+1. Fork repository
+2. Tạo nhánh tính năng (`git checkout -b feature/amazing-feature`)
+3. Commit thay đổi (`git commit -m 'Add some amazing feature'`)
+4. Push lên nhánh (`git push origin feature/amazing-feature`)
+5. Mở Pull Request
+
+## Giấy phép
+
+Dự án này được phân phối dưới Giấy phép MIT. Xem file `LICENSE` để biết thêm thông tin.
+
+## Tác giả
+
+- **Huy-VNNIC** - *Initial work and maintenance*
+
+## Lời cảm ơn
+
+- Dr. Barry Boehm và đội ngũ USC COCOMO II cho việc phát triển mô hình COCOMO II
+- Các contributor đã giúp cải thiện ứng dụng
+- [Software Engineering Institute](https://www.sei.cmu.edu/) cho tài liệu tham khảo
 
 ---
 
-## 📊 Đánh giá mô hình
-
-### 1. Độ chính xác mô hình
-
-Đánh giá mô hình dựa trên các metric:
-
-- **MAE (Mean Absolute Error)**
-- **RMSE (Root Mean Squared Error)**
-- **R² Score**
-
-| Mô hình           | MAE  | RMSE | R² Score |
-| ----------------- | ---- | ---- | -------- |
-| Linear Regression | 4.32 | 5.67 | 0.89     |
-| Decision Tree     | 5.10 | 6.42 | 0.85     |
-| Random Forest     | 3.85 | 4.99 | 0.91     |
-
-Mô hình **Random Forest** cho kết quả tốt nhất.
-
----
-
-## 🔧 Cải tiến hệ thống
-
-1. **Thêm dữ liệu với nhiều đặc trưng hơn** (FP, UCP,...).
-2. **Tối ưu mô hình** bằng Hyperparameter Tuning.
-3. **Áp dụng mô hình mạnh hơn** như XGBoost hoặc Neural Network.
-4. **So sánh nhiều cách tiếp cận khác nhau** để đảm bảo độ chính xác.
-
-
+*Thời gian cập nhật: 2025-05-05 19:19:19 (UTC)*  
+*Đăng nhập người dùng hiện tại: Huy-VNNIC*

@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+npm-debug.log*
+.venv/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# Models (tùy chọn, mở comment nếu bạn không muốn lưu các model lớn vào Git)
+# model/trained_models/*.pkl
+
+# IDE
+.idea/
+.vscode/
