@@ -9,6 +9,7 @@
 COCOMO II Advanced Calculator là công cụ hiện đại để ước tính nỗ lực phát triển phần mềm dựa trên mô hình Constructive Cost Model II (COCOMO II). Ứng dụng cung cấp giao diện người dùng trực quan cho quá trình ước tính dự án phần mềm, bao gồm các tính năng nâng cao như Scale Drivers, Cost Drivers và phân tích rủi ro Monte Carlo.
 
 ![COCOMO II Screenshot](./screenshots/cocomo-calculator.png)
+![image](https://github.com/user-attachments/assets/ee99e749-cba5-47f5-b54b-cfca4051c515)
 
 ## Tính năng chính
 
